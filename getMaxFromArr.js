@@ -32,6 +32,36 @@ function getMaxFromArr (arr) {
         }
         return quickSort( leftArr ).concat( [pivot] ).concat( quickSort(rightArr) );
     }
+    function bubbleSort(arr) {
+        for (var i = 0; i < arr.length - 1; i++) {
+            for (var j = 0; j < arr.length - i; j++) {
+                if (arr[j] > arr[j+1]) {
+                    arr[j] = arr[j] - arr[j+1];
+                    arr[j+1] = arr[j+1] + arr[j];
+                    arr[j] = arr[j+1] - arr[j];
+                }
+            }
+        }
+        return arr;
+    }
+
+    function selectSort(arr) {
+        var maxIndex = 0;
+        for (var i = 0; i < arr.length; i++) {
+            for (var j = 0; j < arr.length - i; j++) {
+                if (arr[j] > arr[maxIndex]) {
+                    maxIndex = j;
+                }
+            }
+            if (maxIndex !== arr.length - 1 - i) {
+                arr[maxIndex] = arr[maxIndex] - arr[arr.length - 1 - i];
+                arr[arr.length - 1 - i] = arr[arr.length - 1 - i] + arr[maxIndex];
+                arr[maxIndex] = arr[arr.length - 1 - i] - arr[maxIndex];
+            }
+            maxIndex = 0;
+        }
+        return arr;
+    }
 }
 
 //解法二：找出数组中最大的两个数，两个最大的数相加，和最大
