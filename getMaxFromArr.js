@@ -10,7 +10,7 @@
 function getMaxFromArr (arr) {
     if (arr.length < 2) throw new Error('输入数组的长度必须大于等于2');
     //排序
-    quickSort(arr);
+    arr = quickSort(arr);
     return arr[0] + arr[1] + '';
 
     //快速排序，分治思想，递归地把数组拆分成左右两个数组。排序成左边的 > 基准点 > 右边的。左边的元素就不用和右边的元素比较。
