@@ -30,3 +30,16 @@ function removeDuplicate (arr) {
     }
     return newArr;
 }
+
+//解法三：双重循环
+function removeDuplicate(arr) {
+    for (var i = 0; i < arr.length; i++) {
+        for (var j = i + 1; j < arr.length; j++) {
+            if (arr[i] === arr[j]) {
+                arr.splice(j, 1);
+                j = j - 1;
+            }
+        }
+    }
+    return arr;
+}
