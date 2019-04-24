@@ -43,3 +43,16 @@ function removeDuplicate(arr) {
     }
     return arr;
 }
+
+//字符串去重
+function uniqueString(str){
+  // 存放结果
+  var res = ''
+  for(var i in str){// 遍历字符串元素
+    if(res.indexOf(str.charAt(i)) == -1){// 如果结果不存在该元素则保存
+       res+=str.charAt(i)
+    }
+  }
+  // 返回去重后的字符串
+  return res
+}
