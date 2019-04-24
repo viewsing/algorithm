@@ -32,35 +32,34 @@ function getMaxFromArr (arr) {
         }
         return quickSort( leftArr ).concat( [pivot] ).concat( quickSort(rightArr) );
     }
+    
     function bubbleSort(arr) {
         for (var i = 0; i < arr.length - 1; i++) {
-            for (var j = 0; j < arr.length - i; j++) {
-                if (arr[j] > arr[j+1]) {
-                    arr[j] = arr[j] - arr[j+1];
-                    arr[j+1] = arr[j+1] + arr[j];
-                    arr[j] = arr[j+1] - arr[j];
+            for (var j = i + 1; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
+                    var temp = arr[j]
+                    arr[j] = arr[i]
+                    arr[i] = temp
                 }
             }
         }
-        return arr;
+        return arr
     }
 
-    function selectSort(arr) {
-        var maxIndex = 0;
+    function selectSort (arr) {
         for (var i = 0; i < arr.length; i++) {
-            for (var j = 0; j < arr.length - i; j++) {
-                if (arr[j] > arr[maxIndex]) {
-                    maxIndex = j;
+            var tempIndex = i
+            var temp = arr[i]
+            for (var j = i + 1; j < arr.length; j++) {
+                if (arr[j] < temp) {
+                    tempIndex = j
+                    temp = arr[j]
                 }
             }
-            if (maxIndex !== arr.length - 1 - i) {
-                arr[maxIndex] = arr[maxIndex] - arr[arr.length - 1 - i];
-                arr[arr.length - 1 - i] = arr[arr.length - 1 - i] + arr[maxIndex];
-                arr[maxIndex] = arr[arr.length - 1 - i] - arr[maxIndex];
-            }
-            maxIndex = 0;
+            arr[tempIndex] = arr[i]
+            arr[i] = temp
         }
-        return arr;
+        return arr
     }
 }
 
