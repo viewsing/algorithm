@@ -22,3 +22,19 @@ function isPalindrome (str) {
     }
     return true;
 }
+
+//解法三：
+function isHuiwen (str) {
+	const arr = str.split('')
+	const len = arr.length
+	let start = 0, end = len - 1
+	while(start <= end) {
+		if (arr[start] !== arr[end]) {
+			return false
+		} else {
+			start ++
+			end --
+		}
+	}
+	return true
+}
