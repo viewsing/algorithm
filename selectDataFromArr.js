@@ -80,3 +80,55 @@ function selectDataFromArr(total, start, offset, count) {
     }
     return retArr;
 }
+
+//解法三：
+function calIndex(start, offset, length) {
+	const end = length - 1
+	const afterIndex = start + offset
+	if (afterIndex > end) {
+		return afterIndex % end
+	} else {
+		return afterIndex
+	}
+}
+
+//收集起点到结束的剩余元素和所需元素
+function collectEle (arr, index, start) {
+	const others = []
+	for (var i = start; i < index; i++) {
+		others.push(arr[i])
+	}
+	return {
+		others,
+		target: arr[index]
+	}
+}
+
+function selectDataFormArr (start, offset, arr, count) {
+	const ret = [] //最后返回的符合需求的元素
+	let rest = [] //剩余数组，存储从0到当前游标下的剩余元素
+	let curIndex = start //当前游标
+
+	for (var i = 0; i < count; i++) {
+		let index = curIndex
+		//除了第一次直接取start下标的元素外，其它都要重新计算下标
+		if (i !== 0) {
+			let index = calIndex(curIndex, offset, arr.length)
+		}
+		let target, others
+		//如果下标越界了，则用剩余元素组成数组从0开始遍历
+		if (index < curIndex) {
+			rest = rest.concat( arr.slice(curIndex+1) ) //要把最末尾的剩余元素也加上
+			arr = rest //更改取数数组
+			rest = [] //重置剩余数组
+			{ target, others } = collectEle(arr, index, 0)
+		} else {
+			{ target, others } = collectEle(arr, index, curIndex+1)
+		}
+		//收集目标元素
+		ret.push(target)
+		//收集剩余元素
+		rest = rest.concat(others)
+		curIndex = index
+	}
+}
